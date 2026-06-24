@@ -25,15 +25,19 @@ def clean_nav_history():
     def fill_missing_dates(group):
         if group.empty:
             return group
+        code = group['amfi_code'].iloc[0]
         idx = pd.date_range(group['date'].min(), group['date'].max())
         group = group.set_index('date').reindex(idx)
-        group['amfi_code'] = group['amfi_code'].ffill()
+        group['amfi_code'] = code
         group['nav'] = group['nav'].ffill()
         group = group.rename_axis('date').reset_index()
         return group
 
     # Pandas groupby apply with resample/reindex
-    df = df.groupby('amfi_code', group_keys=False).apply(fill_missing_dates).reset_index(drop=True)
+    import warnings
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", FutureWarning)
+        df = df.groupby('amfi_code', group_keys=False).apply(fill_missing_dates).reset_index(drop=True)
     
     # Ensure dates are stored in YYYY-MM-DD
     df['date'] = df['date'].dt.strftime('%Y-%m-%d')
