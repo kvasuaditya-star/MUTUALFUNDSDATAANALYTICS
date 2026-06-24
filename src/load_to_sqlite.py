@@ -8,6 +8,11 @@ SCHEMA_PATH = r'sql\schema.sql'
 PROCESSED_DIR = r'data\processed'
 
 def init_db():
+    # Remove old DB if it exists so re-runs don't hit duplicate errors
+    if os.path.exists(DB_PATH):
+        os.remove(DB_PATH)
+        print("Removed old database.")
+    
     print("Initializing database schema...")
     with sqlite3.connect(DB_PATH) as conn:
         with open(SCHEMA_PATH, 'r') as f:
