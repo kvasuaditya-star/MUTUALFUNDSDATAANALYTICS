@@ -1,0 +1,61 @@
+Day 2: Data Cleaning + SQL Database Design
+Objective
+Clean datasets, design SQLite schema, load data, and perform analytics.
+Estimated Duration: 7–8 Hours
+Deliverables: Clean CSVs, SQLite DB, SQL Queries, Data Dictionary
+Task 1: Clean nav_history.csv
+Parse dates to datetime
+Sort by amfi_code and date
+Forward-fill missing NAV values
+Remove duplicates
+Validate NAV > 0
+Output: clean_nav.csv
+Task 2: Clean investor_transactions.csv
+Standardize transaction types (SIP/Lumpsum/Redemption)
+Validate amount > 0
+Fix date formats
+Validate KYC status values
+Output: clean_transactions.csv
+Task 3: Clean scheme_performance.csv
+Validate return values are numeric
+Flag anomalies and invalid values
+Check expense_ratio range (0.1%–2.5%)
+Output: clean_performance.csv
+Task 4: SQLite Star Schema Design
+Create dim_fund
+Create dim_date
+Create fact_nav
+Create fact_transactions
+Create fact_performance
+Create fact_aum
+Define PKs and FKs
+Task 5: Load Data into SQLite
+Use SQLAlchemy create_engine()
+Load data using df.to_sql()
+Verify row counts
+Output: bluestock_mf.db
+Task 6: Analytical SQL Queries
+Top 5 funds by AUM
+Average NAV per month
+SIP YoY growth
+Transactions by state
+Funds with expense_ratio < 1%
+Additional business analytics queries
+Task 7: Data Dictionary
+Document columns
+Data types
+Business definitions
+Source references
+Output: data_dictionary.md
+Task 8: Git Commit & Version Control
+Git Commit Message:
+git commit -m "Day 2: Cleaned data + SQLite DB loaded"
+Push latest changes to GitHub
+Day 2 Deliverables
+10 cleaned CSV files in data/processed/
+bluestock_mf.db
+schema.sql
+queries.sql
+data_dictionary.md
+GitHub repository updated
+
